@@ -21,6 +21,7 @@ local Button_4 = Instance.new("TextButton")
 local UIStroke_5 = Instance.new("UIStroke")
 local Button_5 = Instance.new("TextButton")
 local UIStroke_6 = Instance.new("UIStroke")
+local Value = Instance.new('BoolValue', Button_4)
 
 -- Properties:
 	
@@ -282,34 +283,11 @@ end
 coroutine.wrap(OHGZJ_fake_script)()
 local function CPXWQCE_fake_script() -- Button_4.LocalScript 
 	local script = Instance.new('LocalScript', Button_4)
-	local Value = Instance.new('BoolValue', Button_4)
+	
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Value.Value = not script.Parent.Value.Value
 	end)
 	
-	while true do wait()
-		if Value.Value == true then
-			script.Parent.TextStrokeColor3 = Color3.new(0, 1, 0)
-		else
-			script.Parent.TextStrokeColor3 = Color3.new(1, 0, 0)
-		end
-	end
-	
-	while Value.Value == true do wait()
-		for _, child in ipairs(workspace:GetChildren()) do
-			if game.Players.LocalPlayer.Character and child:IsA("BackpackItem") and child:FindFirstChild("Handle") and child.Name ~= "Arrow" and child.Name ~= "Rokakaka Fruit" and child.Name ~= "Frog" and child.Name ~= "DIO's Diary" and child.Name ~= "Ender Pearl" and child.Name ~= "Volcanic Rock" and child.Name ~= "Toxic Chemicals" and child.Name ~= "Samurai Diary" and child.Name ~= "Requiem Arrow" then
-				game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):EquipTool(child)
-			end
-		end
-		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-			if v.Name == "Banknote" then
-				v.Parent = game.Players.LocalPlayer.Character
-				game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
-				v.Parent = game.Players.LocalPlayer.Character
-				v:Activate()
-			end
-		end
-	end
 end
 coroutine.wrap(CPXWQCE_fake_script)()
 local function WSSXNZ_fake_script() -- Button_5.LocalScript 
@@ -325,3 +303,27 @@ local function WSSXNZ_fake_script() -- Button_5.LocalScript
 	end)
 end
 coroutine.wrap(WSSXNZ_fake_script)()
+
+
+if Value.Value == true then
+	Button_4.TextStrokeColor3 = Color3.new(0, 1, 0)
+else
+	Button_4.TextStrokeColor3 = Color3.new(1, 0, 0)
+end
+
+
+while Value.Value == true do wait()
+	for _, child in ipairs(workspace:GetChildren()) do
+		if game.Players.LocalPlayer.Character and child:IsA("BackpackItem") and child:FindFirstChild("Handle") and child.Name ~= "Arrow" and child.Name ~= "Rokakaka Fruit" and child.Name ~= "Frog" and child.Name ~= "DIO's Diary" and child.Name ~= "Ender Pearl" and child.Name ~= "Volcanic Rock" and child.Name ~= "Toxic Chemicals" and child.Name ~= "Samurai Diary" and child.Name ~= "Requiem Arrow" then
+			game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):EquipTool(child)
+		end
+	end
+	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		if v.Name == "Banknote" then
+			v.Parent = game.Players.LocalPlayer.Character
+			game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
+			v.Parent = game.Players.LocalPlayer.Character
+			v:Activate()
+		end
+	end
+end
