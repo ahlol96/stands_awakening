@@ -281,20 +281,20 @@ end
 coroutine.wrap(OHGZJ_fake_script)()
 local function CPXWQCE_fake_script() -- Button_4.LocalScript 
 	local script = Instance.new('LocalScript', Button_4)
-	local value = Instance.new('BoolValue', Button_4)
+	local Value = Instance.new('BoolValue', Button_4)
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Value.Value = not script.Parent.Value.Value
 	end)
 	
 	while true do wait()
-		if script.Parent.Value.Value == true then
+		if Value.Value == true then
 			script.Parent.TextStrokeColor3 = Color3.new(0, 1, 0)
 		else
 			script.Parent.TextStrokeColor3 = Color3.new(1, 0, 0)
 		end
 	end
 	
-	while script.Parent.Value.Value == true do wait()
+	while Value.Value == true do wait()
 		for _, child in ipairs(workspace:GetChildren()) do
 			if game.Players.LocalPlayer.Character and child:IsA("BackpackItem") and child:FindFirstChild("Handle") and child.Name ~= "Arrow" and child.Name ~= "Rokakaka Fruit" and child.Name ~= "Frog" and child.Name ~= "DIO's Diary" and child.Name ~= "Ender Pearl" and child.Name ~= "Volcanic Rock" and child.Name ~= "Toxic Chemicals" and child.Name ~= "Samurai Diary" and child.Name ~= "Requiem Arrow" then
 				game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):EquipTool(child)
@@ -315,7 +315,7 @@ local function WSSXNZ_fake_script() -- Button_5.LocalScript
 	local script = Instance.new('LocalScript', Button_5)
 
 	script.Parent.MouseButton1Click:Connect(function()
-		for i=0, 10, 1 do
+		for i=1, 10, 1 do
 			local args = {
 				[1] = "Shiny Arrow"
 			}
