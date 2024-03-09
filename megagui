@@ -38,6 +38,8 @@ ScrollingFrame.Position = UDim2.new(0.410989016, 0, 0.214408234, 0)
 ScrollingFrame.Size = UDim2.new(0, 300, 0, 400)
 ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
 
+ScrollingFrame.Draggable = true
+
 UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 UIStroke.Color = Color3.fromRGB(85, 0, 255)
 UIStroke.Thickness = 3
@@ -159,12 +161,6 @@ UIStroke_6.Parent = Button_5
 
 -- Scripts:
 
-local function OASBR_fake_script() -- ScrollingFrame.LocalScript 
-	local script = Instance.new('LocalScript', ScrollingFrame)
-
-	script.Parent.Draggable = true
-end
-coroutine.wrap(OASBR_fake_script)()
 local function QQFVPCB_fake_script() -- Button.LocalScript 
 	local script = Instance.new('LocalScript', Button)
 
