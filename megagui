@@ -1,5 +1,5 @@
 if game.CoreGui:FindFirstChild("SA_MEK") then
-	game.CoreGui:FindFirstChild("SA_MEK")
+	game.CoreGui:FindFirstChild("SA_MEK"):Destroy()
 end
 
 -- Gui to Lua
