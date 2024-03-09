@@ -305,9 +305,10 @@ end
 coroutine.wrap(WSSXNZ_fake_script)()
 
 
-if Value.Value == true then
+while Value.Value == true do wait()
 	Button_4.TextStrokeColor3 = Color3.new(0, 1, 0)
-else
+end
+while Value.Value == false do wait()
 	Button_4.TextStrokeColor3 = Color3.new(1, 0, 0)
 end
 
