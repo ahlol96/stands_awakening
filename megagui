@@ -1,3 +1,7 @@
+if game.CoreGui:FindFirstChild("SA_MEK") then
+	game.CoreGui:FindFirstChild("SA_MEK")
+end
+
 -- Gui to Lua
 -- Version: 3.6
 
@@ -19,8 +23,9 @@ local Button_5 = Instance.new("TextButton")
 local UIStroke_6 = Instance.new("UIStroke")
 
 -- Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	
+ScreenGui.Name = "SA_MEK"
+ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 
