@@ -11,6 +11,33 @@ local Button_2 = Instance.new("TextButton")
 local Button_3 = Instance.new("TextButton")
 local Button_4 = Instance.new("TextButton")
 local Button_5 = Instance.new("TextButton")
+local Value = Instance.new("BoolValue")
+
+repeat wait() until game:IsLoaded() and game:GetService("Players")
+for i,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do
+	v:Disable()
+end
+-- Important Variables
+local Players           =  game:GetService("Players")
+local LocalPlayer       =  Players.LocalPlayer
+local Character         =  LocalPlayer.Character
+local HumanoidRootPart  =  Character.HumanoidRootPart
+local Humanoid          =  Character.Humanoid
+-- Variables
+local Time       =  true
+--local WaitTime   =  0
+local Attacking  =  game:GetService("Workspace").Dead
+local Obby       =  game:GetService("Workspace").ObbyW
+local Phase      =  game:GetService("Workspace").BossPhase
+local Health     =  game:GetService("Workspace").TrollHealth
+
+while true do wait()
+	workspace.Map.RisingPart:Destroy()
+	workspace.Map.templava:Destroy()
+	workspace.Map.RainPart:Destroy()
+	workspace.Map.LavaKB:Destroy()
+	game:GetService("ReplicatedStorage").CameraShaker:Destroy()
+end
 
 --Properties:
 
@@ -115,61 +142,24 @@ Button_5.TextStrokeColor3 = Color3.fromRGB(85, 0, 255)
 Button_5.TextStrokeTransparency = 0.000
 Button_5.TextWrapped = true
 
+Value.Name = "Value"
+Value.Parent = Button_4
+Value.Value = false
+
 -- Scripts:
 
-
-local function JWZZ_fake_script() -- Button.LocalScript 
-	local script = Instance.new('LocalScript', Button)
-
-	script.Parent.MouseButton1Click:Connect(function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-	end)
-end
-coroutine.wrap(JWZZ_fake_script)()
-local function TWWB_fake_script() -- Button_2.LocalScript 
-	local script = Instance.new('LocalScript', Button_2)
-
-	script.Parent.MouseButton1Click:Connect(function()
-		repeat wait() until game:IsLoaded() and game:GetService("Players")
-		for i,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do
-			v:Disable()
-		end
-		-- Important Variables
-		local Players           =  game:GetService("Players")
-		local LocalPlayer       =  Players.LocalPlayer
-		local Character         =  LocalPlayer.Character
-		local HumanoidRootPart  =  Character.HumanoidRootPart
-		local Humanoid          =  Character.Humanoid
-		-- Variables
-		local Time       =  true
-		--local WaitTime   =  0
-		local Attacking  =  game:GetService("Workspace").Dead
-		local Obby       =  game:GetService("Workspace").ObbyW
-		local Phase      =  game:GetService("Workspace").BossPhase
-		local Health     =  game:GetService("Workspace").TrollHealth
-		-- Clear
-		if game:GetService("Workspace"):FindFirstChild("Effects") then
-			game:GetService("Workspace"):FindFirstChild("Effects"):Destroy()
-		end
-		if game:GetService("Workspace").Map:FindFirstChild("ThunderParts") then
-			game:GetService("Workspace").Map:FindFirstChild("ThunderParts"):Destroy()
-		end
-		-- Sword Size
-		if LocalPlayer.Backpack:FindFirstChild("KnightsSword") then
-			LocalPlayer.Backpack["KnightsSword"].Parent = Character
-			if Character:FindFirstChild("KnightsSword") then
-				local Sword            =  Character:FindFirstChild("KnightsSword")
-				local Box              =  Instance.new("SelectionBox")
-				Box.Name               =  "SelectionBoxCreated"
-				Box.Parent             =  Sword.Handle
-				Box.Adornee            =  Sword.Handle
-				Sword.Handle.Massless  =  true
-				Sword.GripPos          =  Vector3.new(0,0,0)
-				Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
-				LocalPlayer.Backpack["KnightsSword"].Parent = Character
-				Character.KnightsSword.Handle.Size = Vector3.new(500, 20, 20)
-			end
-		elseif Character:FindFirstChild("KnightsSword") then
+Button_2.Parent.MouseButton1Click:Connect(function()
+	-- Clear
+	if game:GetService("Workspace"):FindFirstChild("Effects") then
+		game:GetService("Workspace"):FindFirstChild("Effects"):Destroy()
+	end
+	if game:GetService("Workspace").Map:FindFirstChild("ThunderParts") then
+		game:GetService("Workspace").Map:FindFirstChild("ThunderParts"):Destroy()
+	end
+	-- Sword Size
+	if LocalPlayer.Backpack:FindFirstChild("KnightsSword") then
+		LocalPlayer.Backpack["KnightsSword"].Parent = Character
+		if Character:FindFirstChild("KnightsSword") then
 			local Sword            =  Character:FindFirstChild("KnightsSword")
 			local Box              =  Instance.new("SelectionBox")
 			Box.Name               =  "SelectionBoxCreated"
@@ -181,95 +171,80 @@ local function TWWB_fake_script() -- Button_2.LocalScript
 			LocalPlayer.Backpack["KnightsSword"].Parent = Character
 			Character.KnightsSword.Handle.Size = Vector3.new(500, 20, 20)
 		end
-		-- Teleport
-		task.spawn(function()
-			while Attacking.Value == false do task.wait()
-				if Obby.Value == true then
-					HumanoidRootPart.CFrame = CFrame.new(20.4561386, 113.245972, 196.61351, 0.0634383112, 5.81675401e-08, -0.99798578, 8.29346689e-08, 1, 6.35567972e-08, 0.99798578, -8.67995524e-08, 0.0634383112)
+	elseif Character:FindFirstChild("KnightsSword") then
+		local Sword            =  Character:FindFirstChild("KnightsSword")
+		local Box              =  Instance.new("SelectionBox")
+		Box.Name               =  "SelectionBoxCreated"
+		Box.Parent             =  Sword.Handle
+		Box.Adornee            =  Sword.Handle
+		Sword.Handle.Massless  =  true
+		Sword.GripPos          =  Vector3.new(0,0,0)
+		Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
+		LocalPlayer.Backpack["KnightsSword"].Parent = Character
+		Character.KnightsSword.Handle.Size = Vector3.new(500, 20, 20)
+	end
+	-- Teleport
+	task.spawn(function()
+		while Attacking.Value == false do task.wait()
+			if Obby.Value == true then
+				HumanoidRootPart.CFrame = CFrame.new(20.4561386, 113.245972, 196.61351, 0.0634383112, 5.81675401e-08, -0.99798578, 8.29346689e-08, 1, 6.35567972e-08, 0.99798578, -8.67995524e-08, 0.0634383112)
+			else
+				if Phase.Value == "None" then
+					HumanoidRootPart.CFrame = CFrame.new(-5.46999931, -4.45343876, 248.209991, 1, 1.68923409e-09, 7.63995055e-14, -1.68923409e-09, 1, 6.64721389e-09, -7.63882772e-14, -6.64721389e-09, 1)
 				else
-					if Phase.Value == "None" then
-						HumanoidRootPart.CFrame = CFrame.new(-5.46999931, -4.45343876, 248.209991, 1, 1.68923409e-09, 7.63995055e-14, -1.68923409e-09, 1, 6.64721389e-09, -7.63882772e-14, -6.64721389e-09, 1)
-					else
-						HumanoidRootPart.CFrame = CFrame.new(-19.8957844, -4.77343941, 142.49881, -0.999476075, -3.27794467e-08, -0.0323671587, -3.71140274e-08, 1, 1.33318295e-07, 0.0323671587, 1.34449706e-07, -0.999476075)
-					end
+					HumanoidRootPart.CFrame = CFrame.new(-19.8957844, -4.77343941, 142.49881, -0.999476075, -3.27794467e-08, -0.0323671587, -3.71140274e-08, 1, 1.33318295e-07, 0.0323671587, 1.34449706e-07, -0.999476075)
 				end
 			end
-		end)
-		-- Attack
-		task.spawn(function()
-			while Attacking.Value == false  do task.wait()
-				if Obby.Value == false then
-					if Character:FindFirstChild("KnightsSword") then
-						--Character.KnightsSword:Activate()
-					end
+		end
+	end)
+	-- Attack
+	task.spawn(function()
+		while Attacking.Value == false  do task.wait()
+			if Obby.Value == false then
+				if Character:FindFirstChild("KnightsSword") then
+					--Character.KnightsSword:Activate()
 				end
 			end
-		end)
-		-- Percent
-		local function Percent(First, Second)
-			return(First / Second)
 		end
-		Health:GetPropertyChangedSignal("Value"):Connect(function()
-			if Percent(Health.Value, Health.MaxHealth.Value) <= 0.003 and Percent(Health.Value, Health.MaxHealth.Value) >= 0 then
-				if Time then
-					Time = false
-					Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
-					wait(WaitTime)
-					LocalPlayer.Backpack["KnightsSword"].Parent = Character
-				end
+	end)
+	-- Percent
+	local function Percent(First, Second)
+		return(First / Second)
+	end
+	Health:GetPropertyChangedSignal("Value"):Connect(function()
+		if Percent(Health.Value, Health.MaxHealth.Value) <= 0.003 and Percent(Health.Value, Health.MaxHealth.Value) >= 0 then
+			if Time then
+				Time = false
+				Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
+				wait(WaitTime)
+				LocalPlayer.Backpack["KnightsSword"].Parent = Character
 			end
-		end)
-	end)
-end
-coroutine.wrap(TWWB_fake_script)()
-local function DLFT_fake_script() -- Button_3.LocalScript 
-	local script = Instance.new('LocalScript', Button_3)
-
-	script.Parent.MouseButton1Click:Connect(function()
-		while true do
-			wait()
-			workspace.Map.RisingPart:Destroy()
-			workspace.Map.templava:Destroy()
-			workspace.Map.RainPart:Destroy()
-			workspace.Map.LavaKB:Destroy()
-			game:GetService("ReplicatedStorage").CameraShaker:Destroy()
 		end
 	end)
-end
-coroutine.wrap(DLFT_fake_script)()
-local function THCNJO_fake_script() -- Button_4.LocalScript 
-	local script = Instance.new('LocalScript', Button_4)
+end)
 
-	script.Parent.MouseButton1Click:Connect(function()
-		script.Parent.Value.Value = not script.Parent.Value.Value
-	end)
-end
-coroutine.wrap(THCNJO_fake_script)()
-local function DQQHKHE_fake_script() -- Button_5.LocalScript 
-	local script = Instance.new('LocalScript', Button_5)
-
-	script.Parent.MouseButton1Click:Connect(function()
-		for i=1, 10, 1 do
-			local args = {
-				[1] = "Shiny Arrow"
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
-		end
-	end)
-end
-coroutine.wrap(DQQHKHE_fake_script)()
+Button_5.Parent.MouseButton1Click:Connect(function()
+	for i=1, 10, 1 do
+		local args = {[1] = "Shiny Arrow"}
+		game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
+	end
+end)
 
 ScrollingFrame.Draggable = true
 
+Button_4.MouseButton1Click:Connect(function()
+	Value.Value = not Value.Value
+end)
+
 while true do wait()
-	if Button_4.Value.Value == true then
+	if Value.Value == true then
 		Button_4.TextStrokeColor3 = Color3.new(0, 1, 0)
 	else
 		Button_4.TextStrokeColor3 = Color3.new(1, 0, 0)
 	end
 end
 
-while Button_4.Value.Value == true do wait()
+while Value.Value == true do wait()
 	for _, child in ipairs(workspace:GetChildren()) do
 		if game.Players.LocalPlayer.Character and child:IsA("BackpackItem") and child:FindFirstChild("Handle") and child.Name ~= "Arrow" and child.Name ~= "Rokakaka Fruit" and child.Name ~= "Frog" and child.Name ~= "DIO's Diary" and child.Name ~= "Ender Pearl" and child.Name ~= "Volcanic Rock" and child.Name ~= "Toxic Chemicals" and child.Name ~= "Samurai Diary" and child.Name ~= "Requiem Arrow" then
 			game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):EquipTool(child)
@@ -284,3 +259,7 @@ while Button_4.Value.Value == true do wait()
 		end
 	end
 end
+
+Button.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
