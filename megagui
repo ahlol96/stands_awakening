@@ -117,12 +117,7 @@ Button_5.TextWrapped = true
 
 -- Scripts:
 
-local function WTYDD_fake_script() -- ScrollingFrame.LocalScript 
-	local script = Instance.new('LocalScript', ScrollingFrame)
 
-	script.Parent.Draggable = true
-end
-coroutine.wrap(WTYDD_fake_script)()
 local function JWZZ_fake_script() -- Button.LocalScript 
 	local script = Instance.new('LocalScript', Button)
 
@@ -248,37 +243,13 @@ local function THCNJO_fake_script() -- Button_4.LocalScript
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Value.Value = not script.Parent.Value.Value
 	end)
-	
-	while true do wait()
-		if script.Parent.Value.Value == true then
-			script.Parent.TextStrokeColor3 = Color3.new(0, 1, 0)
-		else
-			script.Parent.TextStrokeColor3 = Color3.new(1, 0, 0)
-		end
-	end
-	
-	while script.Parent.Value.Value == true do wait()
-		for _, child in ipairs(workspace:GetChildren()) do
-			if game.Players.LocalPlayer.Character and child:IsA("BackpackItem") and child:FindFirstChild("Handle") and child.Name ~= "Arrow" and child.Name ~= "Rokakaka Fruit" and child.Name ~= "Frog" and child.Name ~= "DIO's Diary" and child.Name ~= "Ender Pearl" and child.Name ~= "Volcanic Rock" and child.Name ~= "Toxic Chemicals" and child.Name ~= "Samurai Diary" and child.Name ~= "Requiem Arrow" then
-				game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):EquipTool(child)
-			end
-		end
-		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-			if v.Name == "Banknote" then
-				v.Parent = game.Players.LocalPlayer.Character
-				game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
-				v.Parent = game.Players.LocalPlayer.Character
-				v:Activate()
-			end
-		end
-	end
 end
 coroutine.wrap(THCNJO_fake_script)()
 local function DQQHKHE_fake_script() -- Button_5.LocalScript 
 	local script = Instance.new('LocalScript', Button_5)
 
 	script.Parent.MouseButton1Click:Connect(function()
-		for i=0, 10, 1 do
+		for i=1, 10, 1 do
 			local args = {
 				[1] = "Shiny Arrow"
 			}
@@ -287,3 +258,29 @@ local function DQQHKHE_fake_script() -- Button_5.LocalScript
 	end)
 end
 coroutine.wrap(DQQHKHE_fake_script)()
+
+ScrollingFrame.Draggable = true
+
+while true do wait()
+	if Button_4.Value.Value == true then
+		Button_4.TextStrokeColor3 = Color3.new(0, 1, 0)
+	else
+		Button_4.TextStrokeColor3 = Color3.new(1, 0, 0)
+	end
+end
+
+while Button_4.Value.Value == true do wait()
+	for _, child in ipairs(workspace:GetChildren()) do
+		if game.Players.LocalPlayer.Character and child:IsA("BackpackItem") and child:FindFirstChild("Handle") and child.Name ~= "Arrow" and child.Name ~= "Rokakaka Fruit" and child.Name ~= "Frog" and child.Name ~= "DIO's Diary" and child.Name ~= "Ender Pearl" and child.Name ~= "Volcanic Rock" and child.Name ~= "Toxic Chemicals" and child.Name ~= "Samurai Diary" and child.Name ~= "Requiem Arrow" then
+			game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):EquipTool(child)
+		end
+	end
+	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		if v.Name == "Banknote" then
+			v.Parent = game.Players.LocalPlayer.Character
+			game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
+			v.Parent = game.Players.LocalPlayer.Character
+			v:Activate()
+		end
+	end
+end
