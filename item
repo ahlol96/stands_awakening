@@ -14,10 +14,10 @@ while true do wait()
         end
     end
 end
-local tpcheck = false
-game.Players.LocalPlayer.OnTeleport:Connect(function()
-    if not tpcheck then
-        tpcheck = true
+--local tpcheck = false
+game.Players.LocalPlayer.OnTeleport:Connect(function(State)
+    --if not tpcheck then
+        --tpcheck = true
         queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/ahlol96/stands_awakening/main/item'))()")
-    end
+    --end
 end)
